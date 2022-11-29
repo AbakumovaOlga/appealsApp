@@ -9,7 +9,7 @@ public class Sender {
         this.template = template;
     }
 
-    public void send(String topic,Object toSend) {
+    public void send(String topic, Object toSend) {
         this.template.send(topic, toSend);
     }
 

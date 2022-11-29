@@ -6,7 +6,6 @@ import org.springframework.stereotype.Repository;
 import ru.abakumova.appealsapp.models.Appeal;
 import ru.abakumova.appealsapp.models.Manager;
 import ru.abakumova.appealsapp.models.enums.AppealStatus;
-import ru.abakumova.appealsapp.models.enums.AppealType;
 
 import java.util.List;
 

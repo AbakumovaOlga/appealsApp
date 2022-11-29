@@ -1,6 +1,7 @@
 package ru.abakumova.appealsapp.models;
 
 import javax.persistence.*;
+
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

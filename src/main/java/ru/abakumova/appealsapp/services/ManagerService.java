@@ -17,7 +17,6 @@ public class ManagerService {
     @Transactional
     public void create(Manager manager) {
         Manager savedManager = managerRepository.save(manager);
-
     }
 
     public Manager findByUsername(String username) {
@@ -25,7 +24,7 @@ public class ManagerService {
         return managerRepository.findByUsername(username);
     }
 
-    public List<Manager> getManagers(){
+    public List<Manager> getManagers() {
         return managerRepository.findAll();
     }
 }

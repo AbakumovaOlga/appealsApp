@@ -1,7 +1,6 @@
 package ru.abakumova.appealsapp.services;
 
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,9 +15,10 @@ import java.util.List;
 @Service
 @AllArgsConstructor
 public class AppealService {
+
     private final AppealRepository appealRepository;
-    @Autowired
-    private KafkaTemplate<String, Object> kafkaTemplate;
+    private final KafkaTemplate<String, Object> kafkaTemplate;
+
     @Transactional
     public void create(Appeal appeal) {
         Appeal savedAppeal = appealRepository.save(appeal);

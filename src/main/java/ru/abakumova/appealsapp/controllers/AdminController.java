@@ -1,13 +1,10 @@
 package ru.abakumova.appealsapp.controllers;
 
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import ru.abakumova.appealsapp.dto.EmployeeDto;
-import ru.abakumova.appealsapp.dto.LoginDto;
 import ru.abakumova.appealsapp.dto.ManagerDto;
-import ru.abakumova.appealsapp.dto.RegisterDto;
-import ru.abakumova.appealsapp.mappers.AccountMapper;
 import ru.abakumova.appealsapp.mappers.ManagerMapper;
 import ru.abakumova.appealsapp.models.Account;
 import ru.abakumova.appealsapp.models.Employee;
@@ -20,21 +17,20 @@ import ru.abakumova.appealsapp.services.ManagerService;
 import javax.validation.Valid;
 
 
+@AllArgsConstructor
 @RestController
 @RequestMapping("/api/admin")
 public class AdminController {
 
-    @Autowired
-    private ManagerService managerService;
+    private final ManagerService managerService;
 
-    @Autowired
-    private AccountService accountService;
+    private final AccountService accountService;
 
-    @Autowired
-    private EmployeeService employeeService;
+    private final EmployeeService employeeService;
 
-    @Autowired
-    private ManagerMapper managerMapper;
+    private final ManagerMapper managerMapper;
+
+
 
     @PostMapping("/manager")
     public void createManager(@Valid @RequestBody ManagerDto managerDto) {
@@ -43,7 +39,7 @@ public class AdminController {
         Manager manager = managerMapper.fromManagerDto(managerDto);
         managerService.create(manager);*/
         //TODO: constr or mapper
-        Account account=new Account();
+        Account account = new Account();
         account.setPassword(managerDto.getPassword());
         account.setUsername(managerDto.getUsername());
         account.setRole(AccountRole.MANAGER);
@@ -64,7 +60,7 @@ public class AdminController {
         Manager manager = managerMapper.fromManagerDto(managerDto);
         managerService.create(manager);*/
         //TODO: constr or mapper
-        Account account=new Account();
+        Account account = new Account();
         account.setPassword(employeeDto.getPassword());
         account.setUsername(employeeDto.getUsername());
         account.setRole(AccountRole.EMPLOYEE);

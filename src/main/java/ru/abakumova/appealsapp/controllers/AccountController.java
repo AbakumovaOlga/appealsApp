@@ -1,6 +1,6 @@
 package ru.abakumova.appealsapp.controllers;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import ru.abakumova.appealsapp.dto.LoginDto;
 import ru.abakumova.appealsapp.dto.RegisterDto;
@@ -12,12 +12,12 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/api/account")
+@AllArgsConstructor
 public class AccountController {
-    @Autowired
-    private AccountService accountService;
+    private final AccountService accountService;
 
-    @Autowired
-    private AccountMapper accountMapper;
+    private final AccountMapper accountMapper;
+
 
     @PostMapping("/register")
     public void register(@Valid @RequestBody RegisterDto registerDto) {

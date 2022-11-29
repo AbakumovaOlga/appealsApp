@@ -1,7 +1,7 @@
 package ru.abakumova.appealsapp.controllers;
 
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import ru.abakumova.appealsapp.dto.AppealDto;
@@ -11,8 +11,6 @@ import ru.abakumova.appealsapp.models.Appeal;
 import ru.abakumova.appealsapp.models.Employee;
 import ru.abakumova.appealsapp.models.Manager;
 import ru.abakumova.appealsapp.models.enums.AppealStatus;
-import ru.abakumova.appealsapp.models.enums.AppealType;
-import ru.abakumova.appealsapp.repositories.EmployeeRepository;
 import ru.abakumova.appealsapp.services.AppealService;
 import ru.abakumova.appealsapp.services.EmployeeService;
 import ru.abakumova.appealsapp.services.ManagerService;
@@ -21,17 +19,16 @@ import javax.validation.Valid;
 import java.util.Date;
 import java.util.List;
 
+@AllArgsConstructor
 @RestController
 @RequestMapping("/api/appeal")
 public class AppealController {
 
-    @Autowired
-    private AppealService appealService;
-    @Autowired
-    private EmployeeService employeeService;
+    private final AppealService appealService;
+    private final EmployeeService employeeService;
+    private final ManagerService managerService;
 
-    @Autowired
-    private ManagerService managerService;
+
 
     @PostMapping("/employee")
     public void createAppeal(@Valid @RequestBody AppealDto appealDto /*, @AuthenticationPrincipal Account account*/) {
@@ -51,7 +48,7 @@ public class AppealController {
     @DeleteMapping("/employee/{id}")
     public void deleteAppeal(@PathVariable Long id) {
         Account account = (Account) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        Employee employee=employeeService.findByUsername(account.getUsername());
+        Employee employee = employeeService.findByUsername(account.getUsername());
         appealService.delete(employee, id);
     }
 
@@ -66,6 +63,6 @@ public class AppealController {
     public void changeStatus(@PathVariable Long id, @RequestBody AppealStatusDto appealStatusDto) {
         Account account = (Account) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Manager manager = managerService.findByUsername(account.getUsername());
-        appealService.changeStatus(manager, id,AppealStatus.valueOf(appealStatusDto.getAppealStatus()));
+        appealService.changeStatus(manager, id, AppealStatus.valueOf(appealStatusDto.getAppealStatus()));
     }
 }

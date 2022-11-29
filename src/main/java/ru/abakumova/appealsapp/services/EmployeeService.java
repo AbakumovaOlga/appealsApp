@@ -15,10 +15,7 @@ public class EmployeeService {
 
     @Transactional
     public void create(Employee employee) {
-
-        //  manager.getEmployees().forEach(employee -> employee.setManager(manager));
         Employee savedEmployee = employeeRepository.save(employee);
-
     }
 
     public Employee findByUsername(String username) {
