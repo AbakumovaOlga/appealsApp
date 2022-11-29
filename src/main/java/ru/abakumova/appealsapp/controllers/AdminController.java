@@ -2,9 +2,12 @@ package ru.abakumova.appealsapp.controllers;
 
 
 import lombok.AllArgsConstructor;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import ru.abakumova.appealsapp.dto.EmployeeDto;
 import ru.abakumova.appealsapp.dto.ManagerDto;
+import ru.abakumova.appealsapp.mappers.AccountMapper;
+import ru.abakumova.appealsapp.mappers.EmployeeMapper;
 import ru.abakumova.appealsapp.mappers.ManagerMapper;
 import ru.abakumova.appealsapp.models.Account;
 import ru.abakumova.appealsapp.models.Employee;
@@ -18,60 +21,35 @@ import javax.validation.Valid;
 
 
 @AllArgsConstructor
+@Validated
 @RestController
 @RequestMapping("/api/admin")
 public class AdminController {
-
     private final ManagerService managerService;
-
     private final AccountService accountService;
-
     private final EmployeeService employeeService;
-
+    private final EmployeeMapper employeeMapper;
     private final ManagerMapper managerMapper;
-
+    private final AccountMapper accountMapper;
 
 
     @PostMapping("/manager")
     public void createManager(@Valid @RequestBody ManagerDto managerDto) {
-        /*Account account = accountMapper.fromRegisterDto(registerDto);
-        accountService.register(account);
-        Manager manager = managerMapper.fromManagerDto(managerDto);
-        managerService.create(manager);*/
-        //TODO: constr or mapper
-        Account account = new Account();
-        account.setPassword(managerDto.getPassword());
-        account.setUsername(managerDto.getUsername());
+        Account account = accountMapper.fromManagerDto(managerDto);
         account.setRole(AccountRole.MANAGER);
         accountService.register(account);
-
-        Manager manager = new Manager();
-        manager.setFio(managerDto.getFio());
-        manager.setEmail(managerDto.getEmail());
-        manager.setUsername(managerDto.getUsername());
+        Manager manager = managerMapper.fromManagerDto(managerDto);
         managerService.create(manager);
-
     }
 
     @PostMapping("/employee")
-    public void createEmployee(@Valid @RequestBody EmployeeDto employeeDto) {
-        /*Account account = accountMapper.fromRegisterDto(registerDto);
-        accountService.register(account);
-        Manager manager = managerMapper.fromManagerDto(managerDto);
-        managerService.create(manager);*/
-        //TODO: constr or mapper
-        Account account = new Account();
-        account.setPassword(employeeDto.getPassword());
-        account.setUsername(employeeDto.getUsername());
+    public void createEmployee(@RequestBody @Valid EmployeeDto employeeDto) {
+        Account account = accountMapper.fromEmployeeDto(employeeDto);
         account.setRole(AccountRole.EMPLOYEE);
         accountService.register(account);
-
-        Employee employee = new Employee();
-        employee.setFio(employeeDto.getFio());
-        employee.setEmail(employeeDto.getEmail());
-        employee.setUsername(employeeDto.getUsername());
+        Employee employee = employeeMapper.fromEmployeeDto(employeeDto);
+        //TODO: custom mapper
         employee.setManager(managerService.findByUsername(employeeDto.getManager_username()));
         employeeService.create(employee);
-
     }
 }
