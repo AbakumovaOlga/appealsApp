@@ -1,6 +1,7 @@
 package ru.abakumova.appealsapp.models;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
@@ -18,10 +19,13 @@ public class Account implements UserDetails {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     @Column(unique = true)
+    @NotNull
     private String username;
+    @NotNull
     private String password;
 
     @Enumerated(value = EnumType.STRING)
+    @NotNull
     private AccountRole role;
 
     @Override

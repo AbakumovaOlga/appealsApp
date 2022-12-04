@@ -5,6 +5,7 @@ import ru.abakumova.appealsapp.models.enums.AppealStatus;
 import ru.abakumova.appealsapp.models.enums.AppealType;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Data
@@ -16,14 +17,18 @@ public class Appeal {
 
     @ManyToOne
     @JoinColumn(name = "employee_id")
+    @NotNull
     private Employee employee;
 
     @Enumerated(value = EnumType.STRING)
+    @NotNull
     private AppealType appealType;
 
     @Enumerated(value = EnumType.STRING)
+    @NotNull
     private AppealStatus appealStatus;
 
+    @NotNull
     private Date date;
 
 }

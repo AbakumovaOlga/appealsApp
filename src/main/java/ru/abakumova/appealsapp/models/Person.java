@@ -5,6 +5,7 @@ import org.springframework.validation.annotation.Validated;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
 
 
 @MappedSuperclass
@@ -18,10 +19,12 @@ public class Person {
     private String fio;
 
     //TODO: add validate
+    @NotNull
     @Email
     private String email;
 
     @Column(unique = true)
+    @NotNull
     private String username;
 
 }
