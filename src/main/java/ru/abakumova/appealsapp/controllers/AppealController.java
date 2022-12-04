@@ -6,6 +6,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import ru.abakumova.appealsapp.dto.AppealDto;
 import ru.abakumova.appealsapp.dto.AppealStatusDto;
+import ru.abakumova.appealsapp.exceptions.UndeletableAppealException;
 import ru.abakumova.appealsapp.models.Account;
 import ru.abakumova.appealsapp.models.Appeal;
 import ru.abakumova.appealsapp.models.Employee;
@@ -32,7 +33,6 @@ public class AppealController {
 
     @PostMapping("/employee")
     public void createAppeal(@Valid @RequestBody AppealDto appealDto /*, @AuthenticationPrincipal Account account*/) {
-        //TODO: constr or mapper
         Account account = (Account) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         Appeal appeal = new Appeal();
@@ -46,7 +46,7 @@ public class AppealController {
     }
 
     @DeleteMapping("/employee/{id}")
-    public void deleteAppeal(@PathVariable Long id) {
+    public void deleteAppeal(@PathVariable Long id) throws UndeletableAppealException {
         Account account = (Account) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Employee employee = employeeService.findByUsername(account.getUsername());
         appealService.delete(employee, id);
