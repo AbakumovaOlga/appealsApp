@@ -7,7 +7,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication
 @Slf4j
-@EnableScheduling
+//@EnableScheduling
 public class AppealsAppApplication {
 
     public static void main(String[] args) {

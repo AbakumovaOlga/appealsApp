@@ -1,8 +1,10 @@
 package ru.abakumova.appealsapp.dto;
 
 import lombok.Data;
+import org.springframework.validation.annotation.Validated;
 
 import javax.validation.constraints.Email;
+
 
 @Data
 public class EmployeeDto {
