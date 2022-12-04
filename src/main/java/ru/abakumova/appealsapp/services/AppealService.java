@@ -1,6 +1,7 @@
 package ru.abakumova.appealsapp.services;
 
 import lombok.AllArgsConstructor;
+import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,6 +20,7 @@ public class AppealService {
 
     private final AppealRepository appealRepository;
     private final KafkaTemplate<String, Object> kafkaTemplate;
+    private final AmqpTemplate rabbitTemplate;
 
     @Transactional
     public void create(Appeal appeal) {
@@ -46,7 +48,11 @@ public class AppealService {
         List<Appeal> appeals = getNewAppealsByManager(manager);
         if (appeals.contains(appeal)) {
             appeal.setAppealStatus(appealStatus);
-            kafkaTemplate.send(appealStatus.name(), appeal);
+            if(appealStatus.name().equals(AppealStatus.REJECTED.name())){
+                rabbitTemplate.convertAndSend("queue_"+AppealStatus.REJECTED.name(),appeal);
+            }else {
+                kafkaTemplate.send(appealStatus.name(), appeal);
+            }
             appealRepository.save(appeal);
         }
     }
