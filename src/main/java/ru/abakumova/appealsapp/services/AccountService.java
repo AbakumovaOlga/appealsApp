@@ -1,13 +1,12 @@
 package ru.abakumova.appealsapp.services;
 
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import ru.abakumova.appealsapp.configs.JwtProvider;
+import ru.abakumova.appealsapp.security.JwtProvider;
 import ru.abakumova.appealsapp.models.Account;
 import ru.abakumova.appealsapp.repositories.AccountRepository;
 

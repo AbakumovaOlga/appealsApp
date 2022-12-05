@@ -1,4 +1,4 @@
-package ru.abakumova.appealsapp.configs;
+package ru.abakumova.appealsapp.security;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;

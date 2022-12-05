@@ -1,10 +1,11 @@
-package ru.abakumova.appealsapp.configs;
+package ru.abakumova.appealsapp.schedules;
 
 import lombok.AllArgsConstructor;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import ru.abakumova.appealsapp.models.Manager;
 import ru.abakumova.appealsapp.services.AppealService;
+import ru.abakumova.appealsapp.services.EmailService;
 import ru.abakumova.appealsapp.services.ManagerService;
 
 @Component
@@ -19,7 +20,7 @@ public class ScheduledJob {
 
 
     @Scheduled(cron="${taskEmail.cron}")
-    public void taskEmail() throws InterruptedException {
+    public void taskEmail() {
         for (Manager manager : managerService.getManagers()) {
             int count = appealService.getNewAppealsByManager(manager).size();
             System.out.println(manager.getUsername() + ": " + count);

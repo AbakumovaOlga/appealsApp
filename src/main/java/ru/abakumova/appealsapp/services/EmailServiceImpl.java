@@ -1,7 +1,6 @@
-package ru.abakumova.appealsapp.configs;
+package ru.abakumova.appealsapp.services;
 
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;

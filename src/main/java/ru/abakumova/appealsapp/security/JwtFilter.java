@@ -1,7 +1,6 @@
-package ru.abakumova.appealsapp.configs;
+package ru.abakumova.appealsapp.security;
 
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;

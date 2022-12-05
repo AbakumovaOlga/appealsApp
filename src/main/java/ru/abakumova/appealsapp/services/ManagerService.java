@@ -1,7 +1,6 @@
 package ru.abakumova.appealsapp.services;
 
 import lombok.AllArgsConstructor;
-import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.abakumova.appealsapp.models.Manager;
