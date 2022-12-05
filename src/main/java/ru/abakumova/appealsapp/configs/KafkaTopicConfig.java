@@ -28,9 +28,4 @@ public class KafkaTopicConfig {
         return new NewTopic(AppealStatus.ACCEPTED.name(), 1, (short) 1);
     }
 
-    @Bean
-    public NewTopic topicRejected() {
-        return new NewTopic(AppealStatus.REJECTED.name(), 1, (short) 1);
-    }
-
 }

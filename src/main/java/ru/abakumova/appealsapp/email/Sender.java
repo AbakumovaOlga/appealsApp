@@ -1,4 +1,4 @@
-package ru.abakumova.appealsapp.configs;
+package ru.abakumova.appealsapp.email;
 
 import org.springframework.kafka.core.KafkaTemplate;
 

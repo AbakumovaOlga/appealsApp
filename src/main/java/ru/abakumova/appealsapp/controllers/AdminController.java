@@ -48,7 +48,6 @@ public class AdminController {
         account.setRole(AccountRole.EMPLOYEE);
         accountService.register(account);
         Employee employee = employeeMapper.fromEmployeeDto(employeeDto);
-        //TODO: custom mapper
         employee.setManager(managerService.findByUsername(employeeDto.getManager_username()));
         employeeService.create(employee);
     }
