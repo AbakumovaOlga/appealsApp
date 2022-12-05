@@ -5,6 +5,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import ru.abakumova.appealsapp.models.Manager;
 import ru.abakumova.appealsapp.services.AppealService;
+import ru.abakumova.appealsapp.services.EmailService;
 import ru.abakumova.appealsapp.services.ManagerService;
 
 @Component

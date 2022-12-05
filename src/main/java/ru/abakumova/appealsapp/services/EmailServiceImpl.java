@@ -1,12 +1,12 @@
-package ru.abakumova.appealsapp.configs;
+package ru.abakumova.appealsapp.services;
 
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
+import ru.abakumova.appealsapp.services.EmailService;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
