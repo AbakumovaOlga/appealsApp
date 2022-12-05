@@ -13,7 +13,7 @@
 	manager может отклонить appeal - отправка в рэббит
 	
 
-Раз 3мин посылать на почту manager кол-во appeals where appeal.status==new
+	Раз 3мин посылать на почту manager кол-во appeals where appeal.status==new
 
 Swagger - http://localhost:8080/swagger-ui.html
 
