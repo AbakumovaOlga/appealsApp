@@ -2,6 +2,7 @@
 
 
 Возможности:
+
 	admin может создавать manager и employee
 
 	employee может создать appeal
