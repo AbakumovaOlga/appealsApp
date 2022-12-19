@@ -8,13 +8,8 @@ import ru.abakumova.appealsapp.dto.AppealStatusDto;
 import ru.abakumova.appealsapp.exceptions.NoEntityException;
 import ru.abakumova.appealsapp.exceptions.UndeletableAppealException;
 import ru.abakumova.appealsapp.models.Account;
-import ru.abakumova.appealsapp.models.Appeal;
-import ru.abakumova.appealsapp.models.Employee;
-import ru.abakumova.appealsapp.models.Manager;
 import ru.abakumova.appealsapp.models.enums.AppealStatus;
 import ru.abakumova.appealsapp.security.services.AppealService;
-import ru.abakumova.appealsapp.security.services.EmployeeService;
-import ru.abakumova.appealsapp.security.services.ManagerService;
 
 import javax.validation.Valid;
 import java.util.Date;
@@ -38,7 +33,7 @@ public class AppealController {
     }
 
     @GetMapping("/manager/newAppeals")
-    public List<Appeal> getNewAppeals(@AuthenticationPrincipal Account account) throws NoEntityException {
+    public List<AppealDto> getNewAppeals(@AuthenticationPrincipal Account account) throws NoEntityException {
         return appealService.getNewAppealsByManager(account);
     }
 

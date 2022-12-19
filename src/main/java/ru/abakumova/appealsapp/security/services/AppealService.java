@@ -8,6 +8,8 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.abakumova.appealsapp.dto.AppealDto;
 import ru.abakumova.appealsapp.exceptions.NoEntityException;
 import ru.abakumova.appealsapp.exceptions.UndeletableAppealException;
+import ru.abakumova.appealsapp.mappers.AppealListMapper;
+import ru.abakumova.appealsapp.mappers.AppealMapper;
 import ru.abakumova.appealsapp.models.Account;
 import ru.abakumova.appealsapp.models.Appeal;
 import ru.abakumova.appealsapp.models.Employee;
@@ -23,6 +25,7 @@ import java.util.List;
 public class AppealService {
 
     private final AppealRepository appealRepository;
+    private final AppealListMapper appealListMapper;
     private final KafkaTemplate<String, Object> kafkaTemplate;
     private final AmqpTemplate rabbitTemplate;
     private final EmployeeService employeeService;
@@ -38,9 +41,10 @@ public class AppealService {
         Appeal savedAppeal = appealRepository.save(appeal);
     }
 
-    public List<Appeal> getNewAppealsByManager(Account account) throws NoEntityException {
+    public List<AppealDto> getNewAppealsByManager(Account account) throws NoEntityException {
         Manager manager = managerService.findByUsername(account.getUsername());
-        return appealRepository.getAppealsByManagerAndAppealStatus(manager, AppealStatus.NEW);
+        List<Appeal> appeals = appealRepository.getAppealsByManagerAndAppealStatus(manager, AppealStatus.NEW);
+        return appealListMapper.fromModelList(appeals);
     }
 
     public List<Appeal> getNewAppealsByManager(Manager manager) {
