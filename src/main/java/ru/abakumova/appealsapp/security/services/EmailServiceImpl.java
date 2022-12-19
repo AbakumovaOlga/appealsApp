@@ -1,4 +1,4 @@
-package ru.abakumova.appealsapp.services;
+package ru.abakumova.appealsapp.security.services;
 
 import lombok.AllArgsConstructor;
 import org.springframework.core.io.ClassPathResource;

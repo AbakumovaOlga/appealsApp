@@ -8,6 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 import ru.abakumova.appealsapp.dto.RegisterDto;
+import ru.abakumova.appealsapp.exceptions.NoEntityException;
 import ru.abakumova.appealsapp.models.Account;
 import ru.abakumova.appealsapp.models.enums.AccountRole;
 import ru.abakumova.appealsapp.repositories.AccountRepository;
@@ -42,7 +43,7 @@ public class AccountTests {
                         .content(objectMapper.writeValueAsString(account)))
                 .andExpect(status().isOk());
 
-        Account accountEntity = accountRepository.findByUsername("test_username");
+        Account accountEntity = accountRepository.findByUsername("test_username").orElseThrow(() -> new NoEntityException(Account.class));
         assertThat(accountEntity.getRole()).isEqualTo(AccountRole.ADMIN);
     }
 }

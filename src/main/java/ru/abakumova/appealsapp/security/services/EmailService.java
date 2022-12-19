@@ -1,4 +1,4 @@
-package ru.abakumova.appealsapp.services;
+package ru.abakumova.appealsapp.security.services;
 
 import org.springframework.stereotype.Service;
 

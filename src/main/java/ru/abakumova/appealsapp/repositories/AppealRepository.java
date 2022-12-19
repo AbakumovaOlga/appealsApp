@@ -8,11 +8,12 @@ import ru.abakumova.appealsapp.models.Manager;
 import ru.abakumova.appealsapp.models.enums.AppealStatus;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface AppealRepository extends JpaRepository<Appeal, Long> {
 
-    Appeal findAppealById(Long id);
+    Optional<Appeal> findAppealById(Long id);
 
     @Query(value = "select a from Appeal a  join Employee e on e.id=a.employee.id where e.manager = ?1 and a.appealStatus=?2")
     List<Appeal> getAppealsByManagerAndAppealStatus(Manager manager, AppealStatus appealStatus);
