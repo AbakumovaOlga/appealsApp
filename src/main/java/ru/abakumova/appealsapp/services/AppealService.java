@@ -33,7 +33,7 @@ public class AppealService {
 
     public void delete(Employee employee, Long id) throws UndeletableAppealException {
         Appeal appeal = appealRepository.findAppealById(id);
-        if (appeal.getEmployee() == employee && appeal.getAppealStatus() == AppealStatus.NEW) {
+        if (appeal.getEmployee().equals(employee) && appeal.getAppealStatus().equals( AppealStatus.NEW)) {
             appealRepository.delete(appeal);
         } else {
             throw new UndeletableAppealException("You can`t delete this appeal because it`s not your appeal or this appeal has already been considered ");
@@ -48,9 +48,9 @@ public class AppealService {
         List<Appeal> appeals = getNewAppealsByManager(manager);
         if (appeals.contains(appeal)) {
             appeal.setAppealStatus(appealStatus);
-            if(appealStatus.name().equals(AppealStatus.REJECTED.name())){
-                rabbitTemplate.convertAndSend("queue_"+AppealStatus.REJECTED.name(),appeal);
-            }else {
+            if (appealStatus.name().equals(AppealStatus.REJECTED.name())) {
+                rabbitTemplate.convertAndSend("queue_" + AppealStatus.REJECTED.name(), appeal);
+            } else {
                 kafkaTemplate.send(appealStatus.name(), appeal);
             }
             appealRepository.save(appeal);
