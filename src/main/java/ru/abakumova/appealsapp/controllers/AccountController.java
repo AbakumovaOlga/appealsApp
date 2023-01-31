@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import ru.abakumova.appealsapp.dto.LoginDto;
 import ru.abakumova.appealsapp.dto.RegisterDto;
 import ru.abakumova.appealsapp.exceptions.NoEntityException;
-import ru.abakumova.appealsapp.security.services.AccountService;
+import ru.abakumova.appealsapp.services.AccountService;
 
 import javax.validation.Valid;
 

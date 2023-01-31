@@ -7,16 +7,8 @@ import org.springframework.web.bind.annotation.*;
 import ru.abakumova.appealsapp.dto.EmployeeDto;
 import ru.abakumova.appealsapp.dto.ManagerDto;
 import ru.abakumova.appealsapp.exceptions.NoEntityException;
-import ru.abakumova.appealsapp.mappers.AccountMapper;
-import ru.abakumova.appealsapp.mappers.EmployeeMapper;
-import ru.abakumova.appealsapp.mappers.ManagerMapper;
-import ru.abakumova.appealsapp.models.Account;
-import ru.abakumova.appealsapp.models.Employee;
-import ru.abakumova.appealsapp.models.Manager;
-import ru.abakumova.appealsapp.models.enums.AccountRole;
-import ru.abakumova.appealsapp.security.services.AccountService;
-import ru.abakumova.appealsapp.security.services.EmployeeService;
-import ru.abakumova.appealsapp.security.services.ManagerService;
+import ru.abakumova.appealsapp.services.EmployeeService;
+import ru.abakumova.appealsapp.services.ManagerService;
 
 import javax.validation.Valid;
 
