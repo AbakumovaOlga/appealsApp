@@ -1,4 +1,4 @@
-package ru.abakumova.appealsapp.security.services;
+package ru.abakumova.appealsapp.services;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;

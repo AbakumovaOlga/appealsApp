@@ -1,4 +1,4 @@
-package ru.abakumova.appealsapp.security.services;
+package ru.abakumova.appealsapp.services;
 
 import lombok.AllArgsConstructor;
 import org.springframework.amqp.core.AmqpTemplate;
@@ -9,7 +9,6 @@ import ru.abakumova.appealsapp.dto.AppealDto;
 import ru.abakumova.appealsapp.exceptions.NoEntityException;
 import ru.abakumova.appealsapp.exceptions.UndeletableAppealException;
 import ru.abakumova.appealsapp.mappers.AppealListMapper;
-import ru.abakumova.appealsapp.mappers.AppealMapper;
 import ru.abakumova.appealsapp.models.Account;
 import ru.abakumova.appealsapp.models.Appeal;
 import ru.abakumova.appealsapp.models.Employee;
@@ -28,6 +27,7 @@ public class AppealService {
     private final AppealListMapper appealListMapper;
     private final KafkaTemplate<String, Object> kafkaTemplate;
     private final AmqpTemplate rabbitTemplate;
+
     private final EmployeeService employeeService;
     private final ManagerService managerService;
 

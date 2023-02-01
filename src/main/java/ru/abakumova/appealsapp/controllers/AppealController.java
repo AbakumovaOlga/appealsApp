@@ -9,7 +9,7 @@ import ru.abakumova.appealsapp.exceptions.NoEntityException;
 import ru.abakumova.appealsapp.exceptions.UndeletableAppealException;
 import ru.abakumova.appealsapp.models.Account;
 import ru.abakumova.appealsapp.models.enums.AppealStatus;
-import ru.abakumova.appealsapp.security.services.AppealService;
+import ru.abakumova.appealsapp.services.AppealService;
 
 import javax.validation.Valid;
 import java.util.Date;
