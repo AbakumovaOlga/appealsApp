@@ -11,6 +11,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @EnableScheduling
 @EnableAutoConfiguration(exclude={org.springframework.boot.autoconfigure.amqp.RabbitAutoConfiguration.class})
 @SpringBootApplication
+@EnableFeignClients
 public class AppealsAppApplication {
 
     public static void main(String[] args) {

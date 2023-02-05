@@ -13,4 +13,5 @@ public class AppealDto {
     private Employee employee;
     private AppealStatus appealStatus;
     private Date date;
+    private Integer vacationCount;
 }

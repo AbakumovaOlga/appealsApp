@@ -7,4 +7,5 @@ import ru.abakumova.appealsapp.models.Appeal;
 @Mapper(componentModel = "spring")
 public interface AppealMapper {
     AppealDto fromModel(Appeal model);
+    Appeal fromAppealDto (AppealDto appealDto);
 }

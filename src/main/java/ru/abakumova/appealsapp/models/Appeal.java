@@ -1,6 +1,7 @@
 package ru.abakumova.appealsapp.models;
 
 import lombok.Data;
+import org.springframework.format.annotation.NumberFormat;
 import ru.abakumova.appealsapp.models.enums.AppealStatus;
 import ru.abakumova.appealsapp.models.enums.AppealType;
 
@@ -31,4 +32,7 @@ public class Appeal {
     @NotNull
     private Date date;
 
+    @OneToOne
+    @JoinColumn(name = "vacationRegister_id", referencedColumnName = "id")
+    private VacationRegister vacationRegister;
 }

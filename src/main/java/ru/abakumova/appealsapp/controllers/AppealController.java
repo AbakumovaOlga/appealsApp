@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import ru.abakumova.appealsapp.dto.AppealDto;
 import ru.abakumova.appealsapp.dto.AppealStatusDto;
 import ru.abakumova.appealsapp.exceptions.NoEntityException;
+import ru.abakumova.appealsapp.exceptions.NotEnoughVacationCount;
 import ru.abakumova.appealsapp.exceptions.UndeletableAppealException;
 import ru.abakumova.appealsapp.models.Account;
 import ru.abakumova.appealsapp.models.enums.AppealStatus;
@@ -23,7 +24,7 @@ public class AppealController {
     private final AppealService appealService;
 
     @PostMapping("/employee")
-    public void createAppeal(@Valid @RequestBody AppealDto appealDto, @AuthenticationPrincipal Account account) throws NoEntityException {
+    public void createAppeal(@Valid @RequestBody AppealDto appealDto, @AuthenticationPrincipal Account account) throws NoEntityException, NotEnoughVacationCount {
         appealService.create(appealDto, account);
     }
 
@@ -34,7 +35,7 @@ public class AppealController {
 
     @GetMapping("/manager/newAppeals")
     public List<AppealDto> getNewAppeals(@AuthenticationPrincipal Account account) throws NoEntityException {
-        return appealService.getNewAppealsByManager(account);
+        return appealService.getAppealsByManagerAndStatus(account, AppealStatus.NEW);
     }
 
     @PutMapping("/manager/{id}")
