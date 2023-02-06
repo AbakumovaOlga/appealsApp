@@ -17,20 +17,18 @@ import java.util.Date;
 @AllArgsConstructor
 public class VacationRegisterService {
     private final VacationRegisterRepository vacationRegisterRepository;
-    private final EmployeeService employeeService ;
+    private final EmployeeService employeeService;
     private final ManagerService managerService;
     private final ProjectClient projectClient;
 
     public void provideVacationForProject(VacationForProjectDto vacationForProjectDto, Account account) throws NoEntityException {
-        Employee employee=employeeService.findByUsername(vacationForProjectDto.getUsername());
-        Manager manager=managerService.findByUsername(account.getUsername());
+        Employee employee = employeeService.findByUsername(vacationForProjectDto.getUsername());
+        Manager manager = managerService.findByUsername(account.getUsername());
 
-        if(manager.getEmployees().contains(employee)){
-            //TODO: get randomInteger from Random.org;
-            //Integer vacationCount=5;
-            Integer vacationCount=projectClient.getVacationForProject(vacationForProjectDto.getProjectId(),1,1,1,10,"plain","new");
+        if (manager.getEmployees().contains(employee)) {
+            Integer vacationCount = Integer.parseInt(projectClient.getVacationForProject(vacationForProjectDto.getProjectId().intValue(), 1, 1, 1, 10, "plain", "new").trim());
             vacationRegisterRepository.save(new VacationRegister(employee, vacationCount, new Date()));
-        }else{
+        } else {
             throw new NoEntityException(Employee.class);
         }
     }
