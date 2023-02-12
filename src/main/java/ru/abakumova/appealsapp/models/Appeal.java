@@ -1,6 +1,8 @@
 package ru.abakumova.appealsapp.models;
 
+import com.fasterxml.jackson.annotation.JsonIncludeProperties;
 import lombok.Data;
+import org.springframework.format.annotation.NumberFormat;
 import ru.abakumova.appealsapp.models.enums.AppealStatus;
 import ru.abakumova.appealsapp.models.enums.AppealType;
 
@@ -10,6 +12,7 @@ import java.util.Date;
 
 @Data
 @Entity
+@JsonIncludeProperties(value = {"id", "employee", "appealType","appealStatus","date"})
 public class Appeal {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -31,4 +34,7 @@ public class Appeal {
     @NotNull
     private Date date;
 
+    @OneToOne
+    @JoinColumn(name = "vacationRegister_id", referencedColumnName = "id")
+    private VacationRegister vacationRegister;
 }

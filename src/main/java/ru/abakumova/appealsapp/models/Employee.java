@@ -19,4 +19,7 @@ public class Employee extends Person {
 
     @OneToMany(mappedBy = "employee")
     private List<Appeal> appeals;
+
+    @OneToMany(mappedBy = "employee")
+    private List<VacationRegister> vacationRegisters;
 }
