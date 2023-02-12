@@ -11,6 +11,4 @@ public class ProjectClientConfiguration {
 //    public Decoder feignDecoder() {
 //        return new ResponseEntityDecoder();
 //    }
-
-
 }

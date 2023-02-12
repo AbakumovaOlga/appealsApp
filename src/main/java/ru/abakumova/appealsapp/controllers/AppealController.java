@@ -13,7 +13,6 @@ import ru.abakumova.appealsapp.models.enums.AppealStatus;
 import ru.abakumova.appealsapp.services.AppealService;
 
 import javax.validation.Valid;
-import java.util.Date;
 import java.util.List;
 
 @AllArgsConstructor
