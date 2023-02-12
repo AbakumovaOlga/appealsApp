@@ -8,10 +8,9 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 
-@Slf4j
+@SpringBootApplication
 @EnableScheduling
 @EnableAutoConfiguration(exclude={org.springframework.boot.autoconfigure.amqp.RabbitAutoConfiguration.class})
-@SpringBootApplication
 @EnableFeignClients
 public class AppealsAppApplication {
 

@@ -14,4 +14,5 @@ public class AppealDto {
     private AppealStatus appealStatus;
     private Date date;
     private Integer vacationCount;
+    private Long id;
 }

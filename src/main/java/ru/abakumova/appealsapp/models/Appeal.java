@@ -1,5 +1,6 @@
 package ru.abakumova.appealsapp.models;
 
+import com.fasterxml.jackson.annotation.JsonIncludeProperties;
 import lombok.Data;
 import org.springframework.format.annotation.NumberFormat;
 import ru.abakumova.appealsapp.models.enums.AppealStatus;
@@ -11,6 +12,7 @@ import java.util.Date;
 
 @Data
 @Entity
+@JsonIncludeProperties(value = {"id", "employee", "appealType","appealStatus","date"})
 public class Appeal {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
